@@ -25,26 +25,29 @@ PAUSE = "&& python -c 'raw_input()' "
 menu_data = {
   'title': "netex", 'type': MENU, 'subtitle': "Network testing tools",
   'options':[
-	{ 'title': 'iftools', 'type': MENU, 'subtitle': "Interface tools", 
+	{ 'title': 'interface tools', 'type': MENU, 'subtitle': "if up/down, arp, tcpdump", 
 		"options": [
 			{ "title": "ifup", "type": COMMAND, "command": "ifup eth0" },
 			{ "title": "ifdown", "type": COMMAND, "command": "ifdown eth0" },
 			{ "title": "ARP Table", "type": COMMAND, "command": "ip neigh" + PAUSE },
-			{ "title": "tcpdump", "type": MENU,
+			{ "title": "tcpdump", "type": MENU, "subtitle": "common tcpdump commands",
 				"options": [
-					{ "title": "*", "type": COMMAND, "command": "tcpdump -i eth0" },
-					{ "title": "arp", "type": COMMAND, "command": "tcpdump -i eth0 arp" },
-					{ "title": "ospf", "type": COMMAND, "command": "tcpdump -i eth0 -v proto ospf" },
+					{ "title": "tcpdump all", "type": COMMAND, "command": "tcpdump -i eth0" },
+					{ "title": "tcpdump arp", "type": COMMAND, "command": "tcpdump -i eth0 arp" },
+					{ "title": "tcpdump ospf", "type": COMMAND, "command": "tcpdump -i eth0 -v proto ospf" },
 				],
 			}
 		],
 	},
-	{ 'title': 'ping tools', 'type': MENU, 'subtitle': "Ping tools", 
+	{ 'title': 'connectivity tools', 'type': MENU, 'subtitle': "ping, mtr, dns, dhcp",
 		"options": [
+			{ "title": "test dhcp availability", "type": COMMAND, "command": "dhclient -v eth0" + PAUSE },
+			{ "title": "test dns, try resolve", "type": COMMAND, "command": "host google.com" + PAUSE },
 			{ "title": "ping 8.8.8.8", "type": COMMAND, "command": "ping -I eth0 8.8.8.8" },
 			{ "title": "mtr", "type": COMMAND, "command": "mtr 8.8.8.8" },
 		],
 	},
+	{'title': 'shell', 'type': COMMAND, 'command': '/bin/bash'},
   ],
 }
 
